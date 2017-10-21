@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logico</title>
+    <link rel="stylesheet" type="text/css" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+</head>
+<body>
+
+<!-- Contact Section -->
+<div id="Logico" class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="form-group">
+                                <input type="text" name="sentence" class="form-control" id="sentence" required  v-model="sentence">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button type="submit" class="btn btn-xl" @click="createEvent">提交</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/node_modules/axios/dist/axios.min.js"></script>
+</body>
+</html>
