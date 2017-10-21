@@ -9,7 +9,9 @@ import (
 	// "github.com/sajari/docconv"
 	"io"
 	// "log"
+	"io/ioutil"
 	"os"
+	"strings"
 )
 
 type FileController struct {
@@ -17,19 +19,20 @@ type FileController struct {
 }
 
 type Sentence struct {
-	Sentence string
+	Sentence          string
+	GeneratedSentence string
 }
 
 func (this *FileController) CreateEvent() {
 	sentence := this.GetString("sentence")
-	fmt.Println(sentence)
 	InputWrapperTerminal(sentence, "InputTextForWordProcessor.txt")
 	mystruct := Sentence{}
 	mystruct.Sentence = sentence
-
+	mystruct.GeneratedSentence = JSInputReader("OutputWordPropertyPairs.txt")
 	this.Data["json"] = &mystruct
 	this.ServeJSON()
-	GoPython()
+
+	exec.Command("python", "./NLTKProcessor.py").Run()
 
 }
 
@@ -96,10 +99,26 @@ func checkFileIsExist(filename string) bool {
 	return exist
 }
 
-/*GoPython runs python script from Go
-Python NLTK script
-Run Python and update OutputWordPropertyPairs.txt
+/*JSInputReader reads text file and generate a webpage
+Plain text input file;index.html named exactly
+Webpage with tagged texts
 */
-func GoPython() {
-	exec.Command("python", "./NLTKProcessor.py").Run()
+func JSInputReader(OutputWordPropertyPairsName string) string {
+	//read the tagged files
+	ByteContent, _ := ioutil.ReadFile(OutputWordPropertyPairsName)
+	StringContent := string(ByteContent)
+	//add into main paragraph
+	//	find <p> and </p> indexes in index.html
+	ByteContentHTML, _ := ioutil.ReadFile("index.html")
+	HTMLStringContent := string(ByteContentHTML)
+	ParagraphStart := strings.Index(HTMLStringContent, "<p id=\"p\">") + 10
+	ParagraphStop := strings.Index(HTMLStringContent, "</p>")
+	//	replace string in bettween
+	NewIndexHTML := HTMLStringContent[:ParagraphStart] + StringContent + HTMLStringContent[ParagraphStop:]
+	//	store into file
+	var f *os.File
+	f, _ = os.Create("index.html") //创建文件
+	io.WriteString(f, NewIndexHTML)
+	defer f.Close()
+	return StringContent
 }

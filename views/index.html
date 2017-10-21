@@ -4,7 +4,18 @@
     <title>Logico</title>
     <link rel="stylesheet" type="text/css" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/main.css">
-
+    <style type="text/css">
+    DTA {
+        color: red
+    }
+    VB {
+        color: blue
+    }
+    NN {
+        color: green;
+        font-size: 30px;
+    }
+    </style>
 </head>
 <body>
 
@@ -25,6 +36,9 @@
                             <div id="success"></div>
                             <button type="submit" class="btn btn-xl" @click="createEvent">提交</button>
                         </div>
+                        <div class="col-md-8 col-md-offset-2">
+                             <p id="p">{{GeneratedSentence}}</p>
+                        </div>
                     </div>
             </div>
         </div>
@@ -33,5 +47,6 @@
 <script type="text/javascript" src="../static/node_modules/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../static/js/main.js"></script>
 <script type="text/javascript" src="../static/node_modules/axios/dist/axios.min.js"></script>
+
 </body>
 </html>
