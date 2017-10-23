@@ -1,5 +1,4 @@
 # Logico
-##
 Logico project at Go Hack 2017.
 
 ## Features
