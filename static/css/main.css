@@ -94,32 +94,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 5em 0;
 }
 
-.fh5co-feature {
-  text-align: left;
-  width: 100%;
-  float: left;
-  padding: 20px;
-}
-.fh5co-feature .fh5co-icon {
-  float: left;
-  width: 10%;
-  display: block;
-  margin-top: 5px;
-}
-.fh5co-feature .fh5co-icon i {
-  color: #52d3aa;
-  font-size: 70px;
-}
-.fh5co-feature.fh5co-feature-sm .fh5co-icon i {
-  color: #52d3aa;
-  font-size: 28px;
-}
-.fh5co-feature .fh5co-text {
-  float: right;
-  width: 80%;
-}
-
-
 .btn {
   margin-right: 4px;
   margin-bottom: 4px;
