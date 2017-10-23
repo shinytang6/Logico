@@ -4,46 +4,184 @@
     <title>Logico</title>
     <link rel="stylesheet" type="text/css" href="../static/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
     <style type="text/css">
+    *{
+        word-spacing: 10px;
+        font-size: 24px;
+    }
+
     DTA {
-        color: red
+        color: grey;
+        font-size: 24px;
+        line-height:48px;
     }
     VB {
-        color: blue
+        color: red;
+        font-size: 24px;
+        line-height:48px;
     }
     NN {
         color: green;
-        font-size: 30px;
+        font-size: 24px;
+        line-height:48px;
     }
+    PR {
+        color: green;
+        font-size: 24px;
+        line-height:48px;
+    }
+    MD {
+        color: red;
+        font-size: 24px;
+        line-height:48px;
+    }
+    .inputbox {
+        margin-top: 100px;
+    }
+
     </style>
 </head>
 <body>
 
-<!-- Contact Section -->
-<div id="Logico" class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+<div id="fh5co-wrap" >
+    
+
+        <div class="fh5co-hero"  data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+                        <div class="fh5co-intro fh5co-table-cell">
+                            <h1 class="text-center">Optimize reading experience</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="Logico">
+        <div class="fh5co-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2>Text input</h2>
+                        <p>If readers input some sentences,our products can highlight the characteristic or property of a certain word.</p>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col-md-8 col-md-offset-2 inputbox" >
                             <div class="form-group">
                                 <input type="text" name="sentence" class="form-control" id="sentence" required  v-model="sentence">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
                         <div class="col-lg-12 text-center">
                             <div id="success"></div>
                             <button type="submit" class="btn btn-xl" @click="createEvent">提交</button>
                         </div>
                         <div class="col-md-8 col-md-offset-2">
-                             <p id="p">{{GeneratedSentence}}</p>
+                             <p id="p1">{{GeneratedSentence}}</p>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+
+
+        <div class="fh5co-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <h2>File input</h2>
+                        <p>If readers input some files,our products can highlight the characteristic or property of a certain word in the whole file</p>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col-md-8 col-md-offset-2 inputbox" >
+                            <div class="form-group">
+                                <input type="file" name="file" class="form-control" id="file" required  ref="file">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <div id="success"></div>
+                        <button type="submit" class="btn btn-xl btn-file" @click="createFile">提交</button>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2">
+                        <p id="p2">{{GeneratedFile}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="fh5co-parallax"  data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center fh5co-table">
+                        <div class="fh5co-intro fh5co-table-cell">
+                            <h1 class="text-center">Keep it simple</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fh5co-section">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-strategy"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3>Strategy</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-telescope"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3>Explore</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-circle-compass"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3>Direction</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="fh5co-feature animate-box" data-animate-effect="fadeInLeft">
+                            <div class="fh5co-icon">
+                                <i class="icon-tools"></i>
+                            </div>
+                            <div class="fh5co-text">
+                                <h3>Expertise</h3>
+                                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
 <script type="text/javascript" src="../static/node_modules/vue/dist/vue.js"></script>
 <script type="text/javascript" src="../static/js/main.js"></script>
 <script type="text/javascript" src="../static/node_modules/axios/dist/axios.min.js"></script>

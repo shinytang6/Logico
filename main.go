@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "bMatch/routers"
+	_ "Logico/routers"
 	"github.com/astaxie/beego"
 )
 

@@ -8,8 +8,8 @@ import (
 	// "github.com/fatih/color"
 	// "github.com/sajari/docconv"
 	"io"
-	// "log"
 	"io/ioutil"
+	"log"
 	"os"
 	"strings"
 )
@@ -22,18 +22,37 @@ type Sentence struct {
 	Sentence          string
 	GeneratedSentence string
 }
+type File struct {
+	GeneratedFile string
+}
 
-func (this *FileController) CreateEvent() {
+func (this *FileController) CreateSentence() {
 	sentence := this.GetString("sentence")
 	InputWrapperTerminal(sentence, "InputTextForWordProcessor.txt")
+	exec.Command("python", "./NLTKProcessor.py").Run()
 	mystruct := Sentence{}
 	mystruct.Sentence = sentence
 	mystruct.GeneratedSentence = JSInputReader("OutputWordPropertyPairs.txt")
+	fmt.Println(mystruct.GeneratedSentence)
 	this.Data["json"] = &mystruct
 	this.ServeJSON()
 
-	exec.Command("python", "./NLTKProcessor.py").Run()
+}
 
+func (this *FileController) CreateFile() {
+	f, h, err := this.GetFile("file")
+	if err != nil {
+		log.Fatal("getfile err ", err)
+	}
+	defer f.Close()
+	this.SaveToFile("file", "static/upload/"+h.Filename) // 保存位置在 static/upload, 没有文件夹要先创建
+	InputWrapperDoc("./static/upload/"+h.Filename, "InputTextForWordProcessor.txt")
+	exec.Command("python", "./NLTKProcessor.py").Run()
+	mystruct := File{}
+	mystruct.GeneratedFile = JSInputReader("OutputWordPropertyPairs.txt")
+	fmt.Println(mystruct.GeneratedFile)
+	this.Data["json"] = &mystruct
+	this.ServeJSON()
 }
 
 /*
@@ -49,7 +68,7 @@ func InputWrapperTerminal(str string, targetFile string) {
 	// text, _ := reader.ReadString('\n')
 	// fmt.Println(text)
 	var f *os.File
-	f, _ = os.Create(targetFile) //创建文件
+	f, _ = os.Create(targetFile)
 	io.WriteString(f, str)
 	defer f.Close()
 }
@@ -58,7 +77,7 @@ func InputWrapperTerminal(str string, targetFile string) {
    Convert doc/pdf to txt
 */
 func InputWrapperDoc(currentFile string, targetFile string) {
-	file, err := os.OpenFile(targetFile, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
+	file, err := os.OpenFile(targetFile, os.O_WRONLY|os.O_CREATE, 0666)
 	newFile, err := os.Open(currentFile)
 	if err != nil {
 		fmt.Println(err)
